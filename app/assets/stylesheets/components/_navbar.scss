@@ -1,6 +1,10 @@
 .navbar-todo {
   justify-content: space-between;
-  background: white;
+  background: $green-peers;
+}
+
+.navbar-brand {
+  font-weight: bold;
 }
 
 .navbar-todo .navbar-collapse {

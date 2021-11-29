@@ -9,25 +9,25 @@
 
 <ul>
   <% @tasks.each do |task| %>
-      <li>
-        <% if task.done %>
-          <%= link_to '' do %>
-          <i class="fas fa-check-circle"></i>
+      <li class="<%= task.done ? 'task-completed' : '' %>">
+        <div class="task-card">
+          <%= link_to task_path(task), method: :patch, remote: true do %>
+            <% if task.done %>
+                <i class="fas fa-check-circle"></i>
+              <% else %>
+                <i class="far fa-check-circle"></i>
+              <% end %>
           <% end %>
-        <% else %>
-          <%= link_to '' do %>
-          <i class="far fa-check-circle"></i>
+          <%= task.title %>
+          <% if task.due_date %>
+            <small>
+              <%= "(before #{task.due_date.strftime("%B #{task.due_date.day.ordinalize}")})"  %>
+            </small>
           <% end %>
-        <% end %>
-        <%= task.title %>
-        <% if task.due_date %>
-          <small>
-            <%= "(before #{task.due_date.strftime("%A %Y #{task.due_date.day.ordinalize}")})"  %>
-          </small>
-        <% end %>
-        <p>
-          <small class="text-muted"><%= task.description %></small>
-        </p>
+          <p class="mb-0">
+            <small class="text-muted"><%= task.description %></small>
+          </p>
+        </div>
       </li>
     <% end %>
 </ul>
