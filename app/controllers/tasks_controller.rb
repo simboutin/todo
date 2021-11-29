@@ -3,8 +3,8 @@ class TasksController < ApplicationController
     case params[:order]
     when 'due_date_asc' then @tasks = Task.where(user: current_user).order(due_date: :asc)
     when 'due_date_desc' then @tasks = Task.where(user: current_user).order(due_date: :desc)
-    when 'status_not_done' then @tasks = Task.where(user: current_user).order(done: :asc)
-    when 'status_done' then @tasks = Task.where(user: current_user).order(done: :desc)
+    when 'status_not_done' then @tasks = Task.where(user: current_user).order(done: :desc)
+    when 'status_done' then @tasks = Task.where(user: current_user).order(done: :asc)
     else
       @tasks = Task.where(user: current_user).ordered_by_default
     end
@@ -26,6 +26,8 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
+    redirect_to(root_path, status: 401) unless @task.user == current_user
+
     if @task.done
       @task.update(done: false)
     else

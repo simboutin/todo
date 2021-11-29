@@ -26,8 +26,8 @@ tasks = [
 tasks.each do |task|
   new_task = Task.create!(
     title: task[:title],
-    description: nil || task[:description],
-    due_date: nil ||task[:due_date],
+    description: task[:description],
+    due_date: task[:due_date],
     user: john
   )
   puts "#{new_task.title} has been created in the database"
