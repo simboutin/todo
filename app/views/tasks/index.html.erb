@@ -7,6 +7,14 @@
   <% end %>
 </div>
 
+<div>
+  Order by
+  <%= link_to 'due date ⏬', tasks_path(order: 'due_date_asc') %> |
+  <%= link_to 'due date ⏫', tasks_path(order: 'due_date_desc') %> |
+  <%= link_to '✔ first', tasks_path(order: 'status_not_done') %> |
+  <%= link_to '❌first', tasks_path(order: 'status_done') %>
+</div>
+
 <ul>
   <% @tasks.each do |task| %>
       <li class="<%= task.done ? 'task-completed' : '' %>">

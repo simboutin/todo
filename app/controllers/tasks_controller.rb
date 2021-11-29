@@ -1,6 +1,13 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.where(user: current_user).ordered_by_default
+    case params[:order]
+    when 'due_date_asc' then @tasks = Task.where(user: current_user).order(due_date: :asc)
+    when 'due_date_desc' then @tasks = Task.where(user: current_user).order(due_date: :desc)
+    when 'status_not_done' then @tasks = Task.where(user: current_user).order(done: :asc)
+    when 'status_done' then @tasks = Task.where(user: current_user).order(done: :desc)
+    else
+      @tasks = Task.where(user: current_user).ordered_by_default
+    end
   end
 
   def new
