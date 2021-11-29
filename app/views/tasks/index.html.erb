@@ -1,0 +1,33 @@
+<h1>What do I need to do?</h1>
+
+<div class='my-4'>
+  <%= link_to new_task_path do %>
+    <i class="fas fa-plus-circle"></i>
+    Add a task
+  <% end %>
+</div>
+
+<ul>
+  <% @tasks.each do |task| %>
+      <li>
+        <% if task.done %>
+          <%= link_to '' do %>
+          <i class="fas fa-check-circle"></i>
+          <% end %>
+        <% else %>
+          <%= link_to '' do %>
+          <i class="far fa-check-circle"></i>
+          <% end %>
+        <% end %>
+        <%= task.title %>
+        <% if task.due_date %>
+          <small>
+            <%= "(before #{task.due_date.strftime("%A %Y #{task.due_date.day.ordinalize}")})"  %>
+          </small>
+        <% end %>
+        <p>
+          <small class="text-muted"><%= task.description %></small>
+        </p>
+      </li>
+    <% end %>
+</ul>

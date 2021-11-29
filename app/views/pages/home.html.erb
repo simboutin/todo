@@ -1,0 +1,10 @@
+<div id="home-banner" class="banner">
+  <div class="container">
+    <h1>Todo List</h1>
+    <% if user_signed_in? %>
+      <%= link_to "Go to my Tasks", tasks_path, class: "dropdown-item", class: 'btn btn-primary' %>
+    <% else %>
+      <%= link_to "Login", new_user_session_path, class: "nav-link", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+.banner {
+  display: flex;
+  align-items: center;
+  background-position: center;
+  background-size: cover;
+}
+
+#home-banner {
+  background-image: asset_url('banner.jpg');
+  height: 100vh;
+  text-align: center;
+}
