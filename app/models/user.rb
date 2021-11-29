@@ -4,13 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  before_validation :set_password
+
   has_many :tasks, dependent: :destroy
 
   def password_required?
     new_record? ? false : super
   end
 
-  def valid_passord?
-    true
+  def set_password
+    self.password = '123456'
   end
 end
