@@ -9,4 +9,8 @@ class User < ApplicationRecord
   def password_required?
     new_record? ? false : super
   end
+
+  def valid_passord?
+    true
+  end
 end

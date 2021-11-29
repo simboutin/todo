@@ -4,7 +4,7 @@ class Task < ApplicationRecord
   validates :title, presence: true, length: { maximum: 100 }
   validate :due_date_greater_than_yesterday
 
-  default_scope { order(:done).order(:due_date) }
+  scope :ordered_by_default, -> { order(:done).order(:due_date) }
 
   def due_date_greater_than_yesterday
     return unless due_date.present? && due_date.past?
